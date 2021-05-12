@@ -1,5 +1,4 @@
 import os
-import geoip2.database
 import re as ree
 import time
 import IP2Proxy
@@ -11,7 +10,6 @@ from config import home_dir, allowed_requests, clear_ban, error_emotes
 
 db = IP2Proxy.IP2Proxy()
 db.open(home_dir+"DB/IP2PROXY-LITE-PX.BIN")
-reader = geoip2.database.Reader(home_dir+'DB/GeoLite2-City.mmdb')
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
@@ -89,16 +87,7 @@ def advanced():
         'self_ip': IP_addr,
     }
     try:
-        response = reader.city(IP_addr)
         re = dedasn.isp(IP_addr)
-        Data['country_name'] = response.country.name
-        Data['country_iso_code'] = response.country.iso_code
-        Data['subdiv'] = response.subdivisions.most_specific.name
-        Data['subdiv_iso_code'] = response.subdivisions.most_specific.iso_code
-        Data['city'] = response.city.name
-        Data['postal_code'] = response.postal.code
-        Data['latitude'] = response.location.latitude
-        Data['longitude'] = response.location.longitude
         Data['ISP'] = re['isp']
         Data['ASN'] = re['asn']
         Data['proxy_type'] = db.get_proxy_type(IP_addr)
@@ -124,17 +113,8 @@ def advanced_post():
     if ree.match(IP_Regex, IP):
         if IP_bans.count(IP_addr) < allowed_requests:
             try:
-                response = reader.city(IP)
                 re = dedasn.isp(IP)
                 Data['audio'] = ip_audio(IP)
-                Data['country_name'] = response.country.name
-                Data['country_iso_code'] = response.country.iso_code
-                Data['subdiv'] = response.subdivisions.most_specific.name
-                Data['subdiv_iso_code'] = response.subdivisions.most_specific.iso_code
-                Data['city'] = response.city.name
-                Data['postal_code'] = response.postal.code
-                Data['latitude'] = response.location.latitude
-                Data['longitude'] = response.location.longitude
                 Data['ISP'] = re['isp']
                 Data['ASN'] = re['asn']
                 IP_bans.append(IP_addr)
@@ -179,20 +159,11 @@ def api():
         if IP_bans.count(IP_addr) < allowed_requests:
             Data = {}
             try:
-                response = reader.city(IP)
                 resp = dedasn.isp(IP)
                 Data = {
                     'status': 'true',
                     'IP': IP,
                     'audio': ip_audio(IP),
-                    'country_name': response.country.name,
-                    'country_iso_code': response.country.iso_code,
-                    'subdiv': response.subdivisions.most_specific.name,
-                    'subdiv_iso_code': response.subdivisions.most_specific.iso_code,
-                    'city': response.city.name,
-                    'postal_code': response.postal.code,
-                    'latitude': response.location.latitude,
-                    'longitude': response.location.longitude,
                     'isp': resp['isp'],
                     'asn': resp['asn'],
                     'proxy_type': db.get_proxy_type(IP),
