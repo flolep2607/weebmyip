@@ -1,4 +1,3 @@
-import radix
 import os
 from config import db_dir
 from ipaddress import ip_address
@@ -14,33 +13,6 @@ class dedasn():
         self._cache_dir = db_dir
         self.asn_isp_raw = open(db_dir+self.asn_isp_db, 'rb').read()
         self.isp_asn_raw = open(db_dir+self.isp_asn_db, 'rb').read()
-        self._build_radix_tree(self.asn_isp_raw, self.isp_asn_raw)
-
-    def _build_radix_tree(self, asn_isp_raw, ip_asn_raw):
-        self._rtree = radix.Radix()
-        # build the asn -> ISP lookup
-        asn_isp_map = {}
-        lines = asn_isp_raw.decode('utf-8', 'ignore').splitlines()
-        for line in lines:
-            tokens = line.split()
-            try:
-                asn = int(line[:6])
-            except Exception:
-                continue
-            isp = line[7:]
-            asn_isp_map[asn] = isp
-        # build the ipaddr -> ASN lookup
-        lines = ip_asn_raw.decode('utf-8', 'ignore').splitlines()
-        for line in lines:
-            tokens = line.split()
-            ipmask = tokens[0]
-            asn = int(tokens[1])
-            rnode = self._rtree.add(ipmask)
-            rnode.data['asn'] = asn
-            try:
-                rnode.data['isp'] = asn_isp_map[asn]
-            except Exception:
-                rnode.data['isp'] = ''
 
     def _save_files(self, asn_isp_raw, ip_asn_raw):
         if self._cache_dir is None:
