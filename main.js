@@ -54,6 +54,14 @@ const ip2sound=(ip,res)=>{
 	res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
 }
 }
+const randomint=()=>{return Math.floor(Math.random() * 9)}
+const ip2img=(ip)=>{
+	return [...ip].map(r=>{
+		if(r!="."){return `<img src="/static/img/numbers/${r}_${randomint()}.png">`}
+		else{return "<br>"}
+	});
+}
+
 app.use(express.static('static'));
 
 app.use((req,res,next)=>{
@@ -75,7 +83,7 @@ app.get('/api',(req,res)=>{
 
 
 app.get('/',(req,res)=>{
-	res.send(`>${req.IP}<br> <iframe src="/api?ip=${req.IP}"></iframe>`)
+	res.send(`>${req.IP}<br> <iframe src="/api?ip=${req.IP}"></iframe>`).send(ip2img(req.IP))
 })
 
 app.listen()
