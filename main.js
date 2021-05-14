@@ -7,6 +7,7 @@ const async = require('async');
 //const concatstream = require('mp3-concat');
 const fs = require("fs");
 const audioconcat = require('audioconcat')
+const YIPIS=["YIPIS.mp3","YIPIS.1.mp3","YIPIS.2.mp3"]
 
 function insertion(my_array){
     var n=my_array.length,
@@ -30,7 +31,7 @@ const ip2sound=(ip,res)=>{
 	var FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
 	FILES=insertion(FILES)
 	console.log(["./audio/phrases/baka.mp3",...FILES]);
-	audioconcat(["./audio/phrases/baka.mp3",...FILES])
+	audioconcat(["./audio/phrases/baka.mp3",YIPIS[Math.floor(Math.random() * YIPIS.length)],...FILES])
 		.concat(`./static/generated/${btf_ip}.mp3`)
 		.on('end', function (output) {
 			res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
