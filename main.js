@@ -23,6 +23,7 @@ function insertion(my_array){
 }
 
 const ip2sound=(ip,res)=>{
+	if((ip.match(/\./g) || []).length!=3){return res.send("NOOOOOOOOOOOOOOOOOOOOOOO")}
 	const btf_ip=ip.replace(/\./g,"-")
 	const FILE_path=`./static/generated/${btf_ip}.mp3`;
 //	console.log(typeof fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime.getTime(),Date.now(),Date.now()-fs.statSync(FILE_path).mtime.getTime())
@@ -57,7 +58,7 @@ app.use((req,res,next)=>{
 	next()
 })
 app.get(/\/*\.mp3/,(req,res)=>{
-       ip2sound(req.IP,res)
+        ip2sound(req.IP,res)
 })
 
 app.get('/api',(req,res)=>{
@@ -71,6 +72,7 @@ app.get('/api',(req,res)=>{
 
 
 app.get('/',(req,res)=>{
+	if((req.IP.match(/\./g) || []).length!=3){return res.send("NOOOOOOOOOOOOOOOOOOOOOOO")}
 	res.render("index.ejs",{IP:req.IP,IMAGES:ip2img(req.IP)})
 //	res.writeHeader(200, {"Content-Type": "text/html"});
 //	res.write(`>${req.IP}<br> <iframe src="/api?ip=${req.IP}"></iframe>`);
