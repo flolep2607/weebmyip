@@ -14,9 +14,7 @@ function insertion(my_array){
     while(k<n){
         k++;
         my_array.splice(k,0,"./audio/phrases/dot.mp3");
-        i = 0;
         n++;
-        k++;
     }
     return my_array;
 }
