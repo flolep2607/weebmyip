@@ -60,7 +60,7 @@ app.use((req,res,next)=>{
 	req.IP=req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	next()
 })
-app.get('/myip.mp3',(req,res)=>{
+app.get(/\/*\.mp3/,(req,res)=>{
        ip2sound(req.IP,res)
 })
 
