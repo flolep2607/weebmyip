@@ -15,9 +15,9 @@ const ip2sound=(ip,res)=>{
 	//concatenater.pipe(res)
 	console.log(`./static/generated/${btf_ip}.mp3`)
 //	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
-	//const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
-	console.log(["audio/phrases/baka.mp3"]);
-	audioconcat(["audio/phrases/baka.mp3"])
+	const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
+	console.log(["audio/phrases/baka.mp3",...FILES]);
+	audioconcat(["audio/phrases/baka.mp3",...FILES])
 		.concat(`./static/generated/${btf_ip}.mp3`)
 		.on('end', function (output) {
 			res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
