@@ -47,6 +47,7 @@ const ip2sound=(ip,res)=>{
 //	  concatenater.end();
 //	});
 }
+app.use(express.static('public'));
 
 app.use((req,res,next)=>{
 	req.IP=req.headers['x-forwarded-for'] || req.connection.remoteAddress;
