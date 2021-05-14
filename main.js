@@ -6,8 +6,10 @@ const fs = require("fs");
 
 const ip2sound=(ip,res)=>{
 	concatenater = concatstream();
-	concatenater.pipe(res)
+	//concatenater.pipe(res)
+	concatenater.pipe(fs.createWriteStream('concat.mp3'));
 	const FILES=ip.split(".").map(r=>"./audio/nums/"+r)
+	console.log(FILES);
 	async.eachSeries(["./audio/phrases/baka.mp3",...FILES], function(file, cb) {
 	  // ... and pipe them into the concatenater
 	  fs
