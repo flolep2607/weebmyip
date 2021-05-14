@@ -5,9 +5,9 @@ const concatstream = require('mp3-concat');
 const fs = require("fs");
 
 const ip2sound=(ip,res)=>{
+
 	res.writeHead(200, {
-	    'Content-Type': 'audio/mpeg',
-	    'Content-Length': stat.size
+	    'Content-Type': 'audio/mpeg'
 	  });
 	concatenater = concatstream();
 	concatenater.pipe(res)
