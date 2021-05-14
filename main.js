@@ -1,3 +1,6 @@
+process.on('uncaughtException', function(err) {
+  console.log('Caught exception: ' + err);
+});
 const express = require('express')
 const app = express()
 const async = require('async');
