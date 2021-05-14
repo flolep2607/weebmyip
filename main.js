@@ -71,7 +71,7 @@ app.get('/api',(req,res)=>{
 
 
 app.get('/',(req,res)=>{
-	res.render(__dirname+"index.ejs",{IP:req.IP,IMAGES:ip2img(req.IP)})
+	res.render(__dirname+"/index.ejs",{IP:req.IP,IMAGES:ip2img(req.IP)})
 //	res.writeHeader(200, {"Content-Type": "text/html"});
 //	res.write(`>${req.IP}<br> <iframe src="/api?ip=${req.IP}"></iframe>`);
 //	res.write(ip2img(req.IP));
