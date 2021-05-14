@@ -3,6 +3,7 @@ process.on('uncaughtException', function(err) {
 });
 const express = require('express')
 const app = express()
+app.engine('html', require('ejs').renderFile);
 const async = require('async');
 //const concatstream = require('mp3-concat');
 const fs = require("fs");
@@ -29,9 +30,7 @@ const ip2sound=(ip,res)=>{
 	//concatenater.pipe(res)
 
 	if(!fs.existsSync(FILE_path)){
-//{fs.unlinkSync(FILE_path)}
 	console.log(`./static/generated/${btf_ip}.mp3`)
-//	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
 	var FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
 	FILES=insertion(FILES)
 	console.log(["./audio/phrases/baka.mp3","./audio/phrases/"+YIPIS[Math.floor(Math.random() * YIPIS.length)],...FILES]);
@@ -40,16 +39,6 @@ const ip2sound=(ip,res)=>{
 		.on('end', function (output) {
 			res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
 		})
-//			const btf_ip=req.IP.replace(/\./g,"-");
-//	  // ... and pipe them into the concatenater
-//	  fs
-//	    .createReadStream(file)
-//	    .on('end', cb)
-//	    .pipe(concatenater, { end: false });
-//	}, function() {
-//	  // Finally, when all files have been read, close the stream
-//	  concatenater.end();
-//	});
 }else{
 	res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
 }
