@@ -15,6 +15,7 @@ const ip2sound=(ip,res)=>{
 	console.log(["./audio/phrases/baka.mp3",...FILES]);
 	async.eachSeries(["./audio/phrases/baka.mp3",...FILES], (file, cb) => {
 	  // ... and pipe them into the concatenater
+if(fs.existsSync(file)){
 	  fs
 	    .createReadStream(file)
 	    .on('end', cb)
@@ -24,6 +25,7 @@ const ip2sound=(ip,res)=>{
 	  // Finally, when all files have been read, close the stream
 	  concatenater.end();
 	});
+}
 }
 
 app.use((req,res,next)=>{
