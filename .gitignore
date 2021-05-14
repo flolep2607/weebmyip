@@ -1,3 +1,4 @@
 static/generated/*
 !static/generated/127-0-0-1.mp3
+node_modules/*
 package-lock.json
