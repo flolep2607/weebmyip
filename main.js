@@ -14,13 +14,13 @@ const ip2sound=(ip,res)=>{
 	//concatenater.pipe(fs.createWriteStream('concat.mp3'));
 	const FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
 	console.log(FILES);
-	async.eachSeries(["./audio/phrases/baka.mp3",...FILES], function(file, cb) {
+	async.eachSeries(["./audio/phrases/baka.mp3",...FILES], (file, cb) => {
 	  // ... and pipe them into the concatenater
 	  fs
 	    .createReadStream(file)
 	    .on('end', cb)
 	    .pipe(concatenater, { end: false });
-	}, function() {
+	}, () => {
 	  // Finally, when all files have been read, close the stream
 	  concatenater.end();
 	});
@@ -31,7 +31,7 @@ app.use((req,res,next)=>{
 	next()
 })
 
-app.get('/api',(req,res)=>{
+app.get('/api',async (req,res)=>{
 	if(req.query.ip){
 		ip2sound(req.IP,res)
 	}else{
