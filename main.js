@@ -15,6 +15,7 @@ function insertion(my_array){
         k++;
         my_array.splice(k,0,"./audio/phrases/dot.mp3");
         n++;
+	k++;
     }
     return my_array;
 }
