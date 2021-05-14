@@ -10,7 +10,7 @@ const fs = require("fs");
 
 const ip2sound=(ip)=>{
 	btf_ip=ip.replace(/\./g,"-")
-	concatenater = concatstream();
+	let concatenater = concatstream();
 	//concatenater.pipe(res)
 	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
 	//const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
