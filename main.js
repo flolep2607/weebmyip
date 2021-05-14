@@ -25,7 +25,6 @@ if(fs.existsSync(file)){
 	  // Finally, when all files have been read, close the stream
 	  concatenater.end();
 	});
-
 }
 
 app.use((req,res,next)=>{
