@@ -9,17 +9,13 @@ const fs = require("fs");
 const audioconcat = require('audioconcat')
 
 function insertion(my_array){
-    var i=0,
-        n=my_array.length,
+    var n=my_array.length,
         k=0;
     while(k<n){
-        i++;
-        if(i%2==0){
-            k++;
-            my_array.splice(k,0,"./audio/phrases/dot.mp3");
-            i = 0;
-            n++;
-        }
+        k++;
+        my_array.splice(k,0,"./audio/phrases/dot.mp3");
+        i = 0;
+        n++;
         k++;
     }
     return my_array;
