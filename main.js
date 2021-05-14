@@ -7,7 +7,6 @@ const _ = require('underscore');
 
 
 const ip2sound=(ip,res)=>{
-	res.set(_.extend(_.pick(audioFile.headers, 'accept-ranges', 'content-type', 'content-length'), { 'Access-Control-Allow-Origin': '*' }));
 	concatenater = concatstream();
 	concatenater.pipe(res)
 	concatenater.on('error', (Error,String)=>console.log(Error,String))

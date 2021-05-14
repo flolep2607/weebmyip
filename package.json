@@ -19,6 +19,7 @@
   "homepage": "https://github.com/flolep2607/weebmyip#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mp3-concat": "^0.1.2"
+    "mp3-concat": "^0.1.2",
+    "underscore": "^1.13.1"
   }
 }
