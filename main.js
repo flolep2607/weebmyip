@@ -15,7 +15,7 @@ const ip2sound=(ip)=>{
 	concatenater.pipe(fs.createWriteStream(`static/generated/${btf_ip}.mp3`));
 	const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
 	console.log(["audio/phrases/baka.mp3",...FILES]);
-	async.eachSeries(["audio/phrases/baka.mp3",...FILES], (file, cb) => {
+	async.eachSeries(["audio/phrases/baka.mp3"], (file, cb) => {
 	  // ... and pipe them into the concatenater
 if(fs.existsSync(file)){
 	  fs
