@@ -44,7 +44,8 @@ window.onclick=()=>{
 window.onload=function(){
 	var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
   if (!isChrome){
-      document.querySelector('#audio2').remove()
+      document.querySelector('#audio2').remove();
+	document.getElementById("audio").play();
   }
   else {
 	document.querySelector('#audio').pause()
