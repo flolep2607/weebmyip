@@ -4,8 +4,9 @@ process.on('uncaughtException', function(err) {
 const express = require('express')
 const app = express()
 const async = require('async');
-const concatstream = require('mp3-concat');
+//const concatstream = require('mp3-concat');
 const fs = require("fs");
+const audioconcat = require('audioconcat')
 
 
 const ip2sound=(ip)=>{
