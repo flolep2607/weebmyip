@@ -1,6 +1,8 @@
 # DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
 PassengerAppRoot "/home2/lefl3378/skid.weeb.flolep.fr"
 PassengerBaseURI "/"
-PassengerPython "/home2/lefl3378/virtualenv/skid.weeb.flolep.fr/3.5/bin/python3.5"
-PassengerAppLogFile "/home2/lefl3378/logs/python/ips.logs"
+PassengerNodejs "/home2/lefl3378/nodevenv/skid.weeb.flolep.fr/10/bin/node"
+PassengerAppType node
+PassengerStartupFile app.js
+PassengerAppLogFile "/home2/lefl3378/logs/nodejs/ips.log"
 # DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
