@@ -30,7 +30,7 @@ const ip2sound=(ip,res)=>{
 //	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
 	var FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
 	FILES=insertion(FILES)
-	console.log(["./audio/phrases/baka.mp3",...FILES]);
+	console.log(["./audio/phrases/baka.mp3",YIPIS[Math.floor(Math.random() * YIPIS.length)],...FILES]);
 	audioconcat(["./audio/phrases/baka.mp3",YIPIS[Math.floor(Math.random() * YIPIS.length)],...FILES])
 		.concat(`./static/generated/${btf_ip}.mp3`)
 		.on('end', function (output) {
