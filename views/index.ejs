@@ -47,7 +47,8 @@ window.onload=function(){
       document.querySelector('#audio2').remove()
   }
   else {
-	document.querySelector('#audio').stop()
+	document.querySelector('#audio').pause()
+	document.querySelector('#audio').currentTime = 0;
       //document.querySelector('#audio').remove() // just to make sure that it will not have 2x audio in the background 
   }
        //document.getElementById("audio").play();
