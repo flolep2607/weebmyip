@@ -46,7 +46,7 @@ const randomint=()=>{return Math.floor(Math.random() * 9)}
 const ip2img=(ip)=>{
 	return [...ip].map(r=>{
 		if(r!="."){return `<img src="/static/img/numbers/${r}_${randomint()}.png">`}
-		else{return "<br>"}
+		else{return "&nbsp;&nbsp;"}
 	}).join("");
 }
 
