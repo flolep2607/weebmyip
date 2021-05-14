@@ -68,7 +68,7 @@ app.get('/api',(req,res)=>{
 
 
 app.get('/',(req,res)=>{
-	res.send(`>${req.IP}`)
+	res.send(`>${req.IP}<br> <iframe src="/api?ip=${req.IP}"></iframe>`)
 })
 
 app.listen()
