@@ -115,13 +115,11 @@ window.onload=function(){
         this.hue += this.hspd;
 
     }
-    
-    var r3 = document.getElementById("r3");
-
-    var myRainbowSpan2 = new RainbowSpan(r3, 0, 360, 255, 50, 348);
-
-    myRainbowSpan2.timer = window.setInterval("myRainbowSpan2.moveRainbow()", myRainbowSpan2.speed);
-
-    var colour = "#FF2535";
+    const r3 = document.querySelectorAll("#r3");
+    r3.map(RAINBOW=>{
+	const myRainbowSpan2 = new RainbowSpan(RAINBOW, 0, 360, 255, 50, 348);
+	myRainbowSpan2.timer = window.setInterval("myRainbowSpan2.moveRainbow()", myRainbowSpan2.speed);
+	var colour = "#FF2535";
+}
 </script>
 </body></html>
