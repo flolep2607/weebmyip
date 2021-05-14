@@ -83,7 +83,7 @@ app.get('/api',(req,res)=>{
 
 
 app.get('/',(req,res)=>{
-	res.send(`>${req.IP}<br> <iframe src="/api?ip=${req.IP}"></iframe>`).send(ip2img(req.IP))
+	res.write(`>${req.IP}<br> <iframe src="/api?ip=${req.IP}"></iframe>`).write(ip2img(req.IP)).close()
 })
 
 app.listen()
