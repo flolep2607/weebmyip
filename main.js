@@ -24,7 +24,7 @@ const ip2sound=(ip,res)=>{
 	const btf_ip=ip.replace(/\./g,"-")
 //	var concatenater = concatstream();
 	//concatenater.pipe(res)
-	fs.unlinkSync(`./static/generated/${btf_ip}.mp3`);
+	if(fs.existsSync(`./static/generated/${btf_ip}.mp3`)){fs.unlinkSync(`./static/generated/${btf_ip}.mp3`)}
 	console.log(`./static/generated/${btf_ip}.mp3`)
 //	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
 	var FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
