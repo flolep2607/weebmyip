@@ -5,6 +5,10 @@ const concatstream = require('mp3-concat');
 const fs = require("fs");
 
 const ip2sound=(ip,res)=>{
+	res.writeHead(200, {
+	    'Content-Type': 'audio/mpeg',
+	    'Content-Length': stat.size
+	  });
 	concatenater = concatstream();
 	concatenater.pipe(res)
 	//concatenater.pipe(fs.createWriteStream('concat.mp3'));
@@ -29,7 +33,7 @@ app.use((req,res,next)=>{
 
 app.get('/api',(req,res)=>{
 	if(req.query.ip){
-		return ip2sound(req.IP,res)
+		ip2sound(req.IP,res)
 	}else{
 		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
 	}
