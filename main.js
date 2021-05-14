@@ -16,7 +16,7 @@ const ip2sound=(ip,res)=>{
 	concatenater.on('error', (Error,String)=>console.log(Error,String))
 	//concatenater.pipe(fs.createWriteStream('concat.mp3'));
 	const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
-	console.log(FILES);
+	console.log(["audio/phrases/baka.mp3",...FILES]);
 	async.eachSeries(["audio/phrases/baka.mp3",...FILES], (file, cb) => {
 	  // ... and pipe them into the concatenater
 	  fs
