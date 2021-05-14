@@ -64,7 +64,7 @@ app.get('/api',(req,res)=>{
 	if(req.query.ip){
 		ip2sound(req.query.ip,res)
 	}else{
-		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
+		ip2sound(req.IP,res)
 	}
 })
 
