@@ -11,7 +11,7 @@ const audioconcat = require('audioconcat')
 function insertion(my_array){
     var n=my_array.length,
         k=0;
-    while(k<n){
+    while(k<n-1){
         k++;
         my_array.splice(k,0,"./audio/phrases/dot.mp3");
         n++;
