@@ -2,6 +2,7 @@ process.on('uncaughtException', function(err) {
   console.log('Caught exception: ' + err);
 });
 const express = require('express')
+const fastFolderSize = require('fast-folder-size')
 const app = express()
 app.engine('html', require('ejs').renderFile);
 const async = require('async');
@@ -81,3 +82,13 @@ app.get('/',(req,res)=>{
 })
 
 app.listen()
+setInterval(()=>{
+	const directory = "./static/generated/";
+	if(fs.existsSync(directory)){
+		fastFolderSize('.', (err, bytes) => {
+			  if (!err && bytes > 5000000) {
+		fs.rmdir(directory, { recursive: true }).then(() => console.log('directory removed!'));
+			  }
+})
+	}
+},10*60*1000)
