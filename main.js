@@ -24,7 +24,7 @@ function insertion(my_array){
 const ip2sound=(ip,res)=>{
 	const btf_ip=ip.replace(/\./g,"-")
 	const FILE_path=`./static/generated/${btf_ip}.mp3`;
-	console.log(typeof fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime)
+	console.log(typeof fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime.getTime())
 //	var concatenater = concatstream();
 	//concatenater.pipe(res)
 
