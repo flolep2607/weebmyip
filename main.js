@@ -33,7 +33,6 @@ const ip2sound=(ip,res)=>{
 	console.log(`./static/generated/${btf_ip}.mp3`)
 	var FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
 	FILES=insertion(FILES)
-	console.log(["./audio/phrases/baka.mp3","./audio/phrases/"+YIPIS[Math.floor(Math.random() * YIPIS.length)],...FILES]);
 	audioconcat(["./audio/phrases/baka.mp3","./audio/phrases/"+YIPIS[Math.floor(Math.random() * YIPIS.length)],...FILES])
 		.concat(FILE_path)
 		.on('end', function (output) {
