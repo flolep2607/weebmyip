@@ -3,7 +3,7 @@ const app = express()
 const async = require('async');
 const concatstream = require('mp3-concat');
 
-const ip2sound=(ip)=>{
+const ip2sound=(ip,res)=>{
 	concatenater = concatstream();
 	concatenater.pipe(res)
 	const FILES=ip.split(".").map(r=>"./audio/nums/"+r)
@@ -26,6 +26,11 @@ app.use((req,res,next)=>{
 
 app.get('/',(req,res)=>{
 	res.send(`>${req.IP}`)
+})
+app.get('api',(req,res)=>{
+	if(req.params.ip){
+		return ip2sound(req.IP,res)
+	}
 })
 
 app.listen()
