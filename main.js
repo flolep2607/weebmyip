@@ -3,10 +3,9 @@ const app = express()
 const async = require('async');
 const concatstream = require('mp3-concat');
 const fs = require("fs");
-const _ = require('underscore');
 
 
-const ip2sound=(ip,res)=>{
+const ip2sound=(ip)=>{
 	btf_ip=ip.replace(/\./g,"-")
 	concatenater = concatstream();
 	//concatenater.pipe(res)
@@ -33,9 +32,9 @@ app.use((req,res,next)=>{
 	next()
 })
 
-app.get('/api',async (req,res)=>{
+app.get('/api',(req,res)=>{
 	if(req.query.ip){
-		ip2sound(req.IP,res)
+		ip2sound(req.IP)
 	}else{
 		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
 	}
