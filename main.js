@@ -12,13 +12,14 @@ const ip2sound=(ip,res)=>{
 	concatenater = concatstream();
 	concatenater.pipe(res)
 	//concatenater.pipe(fs.createWriteStream('concat.mp3'));
-	const FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
+	const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
 	console.log(FILES);
-	async.eachSeries(["./audio/phrases/baka.mp3",...FILES], (file, cb) => {
+	async.eachSeries(["audio/phrases/baka.mp3",...FILES], (file, cb) => {
 	  // ... and pipe them into the concatenater
 	  fs
 	    .createReadStream(file)
 	    .on('end', cb)
+	    .on('error',r=>console.log)
 	    .pipe(concatenater, { end: false });
 	}, () => {
 	  // Finally, when all files have been read, close the stream
