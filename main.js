@@ -22,7 +22,8 @@ if(fs.existsSync(file)){
 	    .createReadStream(file)
 	    .on('end', cb)
 	    .on('error',r=>console.log(r))
-	    .pipe(concatenater, { end: false });
+	    .pipe(concatenater, { end: false })
+	    .on('unpipe', cb)
 	}
 }, () => {
 	  // Finally, when all files have been read, close the stream
