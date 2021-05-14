@@ -1,0 +1,23 @@
+{
+  "name": "weebmyip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flolep2607/weebmyip.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flolep2607/weebmyip/issues"
+  },
+  "homepage": "https://github.com/flolep2607/weebmyip#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
