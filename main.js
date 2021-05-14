@@ -23,16 +23,19 @@ function insertion(my_array){
 
 const ip2sound=(ip,res)=>{
 	const btf_ip=ip.replace(/\./g,"-")
+	const FILE_path=`./static/generated/${btf_ip}.mp3`;
+	if(fs.statSync(file).mtime)
 //	var concatenater = concatstream();
 	//concatenater.pipe(res)
-	if(fs.existsSync(`./static/generated/${btf_ip}.mp3`)){fs.unlinkSync(`./static/generated/${btf_ip}.mp3`)}
+
+	if(fs.existsSync(FILE_path)){fs.unlinkSync(FILE_path)}
 	console.log(`./static/generated/${btf_ip}.mp3`)
 //	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
 	var FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
 	FILES=insertion(FILES)
 	console.log(["./audio/phrases/baka.mp3","./audio/phrases/"+YIPIS[Math.floor(Math.random() * YIPIS.length)],...FILES]);
 	audioconcat(["./audio/phrases/baka.mp3","./audio/phrases/"+YIPIS[Math.floor(Math.random() * YIPIS.length)],...FILES])
-		.concat(`./static/generated/${btf_ip}.mp3`)
+		.concat(FILE_path)
 		.on('end', function (output) {
 			res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
 		})
