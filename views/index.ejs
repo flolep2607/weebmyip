@@ -26,6 +26,7 @@
         </div>
         <div class="main-input">
 		  <audio id="audio" src="/api"></audio>
+		<iframe src="/api" allow="autoplay" id="audio2" style="position: absolute;z-index: -9999;"></iframe>
 	</div>
         <div class="play-ip">
 		<%- IMAGES %>
@@ -41,8 +42,15 @@ window.onclick=()=>{
 	document.getElementById("audio").play();
 }
 window.onload=function(){
-        document.getElementById("audio").play();
-      }
+	var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  if (!isChrome){
+      document.querySelector(('#audio2').remove()
+  }
+  else {
+      document.querySelector('#audio').remove() // just to make sure that it will not have 2x audio in the background 
+  }
+       //document.getElementById("audio").play();
+}
     function toSpans(span) {
         var str = span.firstChild.data;
         var a = str.length;
