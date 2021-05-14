@@ -86,7 +86,7 @@ setInterval(()=>{
 	const directory = "./static/generated/";
 	if(fs.existsSync(directory)){
 		fastFolderSize('.', (err, bytes) => {
-			  if (!err && bytes > 500000) {
+			  if (!err && bytes > 100000000) {
 		fs.rmdir(directory, { recursive: true }).then(() => console.log('directory removed!'));
 			  }
 })
