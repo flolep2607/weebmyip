@@ -8,6 +8,22 @@ const async = require('async');
 const fs = require("fs");
 const audioconcat = require('audioconcat')
 
+function insertion(my_array){
+    var i=0,
+        n=my_array.length,
+        k=0;
+    while(k<n){
+        i++;
+        if(i%2==0){
+            k++;
+            my_array.splice(k,0,"./audio/phrases/dot.mp3");
+            i = 0;
+            n++;
+        }
+        k++;
+    }
+    return my_array;
+}
 
 const ip2sound=(ip,res)=>{
 	const btf_ip=ip.replace(/\./g,"-")
@@ -16,7 +32,8 @@ const ip2sound=(ip,res)=>{
 	fs.unlinkSync(`./static/generated/${btf_ip}.mp3`);
 	console.log(`./static/generated/${btf_ip}.mp3`)
 //	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
-	const FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
+	var FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
+	FILES=insertion(FILES)
 	console.log(["./audio/phrases/baka.mp3",...FILES]);
 	audioconcat(["./audio/phrases/baka.mp3",...FILES])
 		.concat(`./static/generated/${btf_ip}.mp3`)
