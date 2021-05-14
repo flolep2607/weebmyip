@@ -1,3 +1,5 @@
+RewriteEngine on
+RewriteRule ^(.*) https://skid.weeb.flolep.fr/%{REQUEST_URI} [R=302,NC]
 # DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
 PassengerAppRoot "/home2/lefl3378/skid.weeb.flolep.fr"
 PassengerBaseURI "/"
