@@ -9,7 +9,7 @@ const _ = require('underscore');
 const ip2sound=(ip,res)=>{
 	btf_ip=ip.replace(/\./g,"-")
 	concatenater = concatstream();
-	concatenater.pipe(res)
+	//concatenater.pipe(res)
 	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
 	const FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
 	console.log(["./audio/phrases/baka.mp3",...FILES]);
