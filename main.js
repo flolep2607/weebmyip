@@ -24,7 +24,7 @@ const ip2sound=(ip)=>{
 	    .pipe(concatenater, { end: false });
 	}, function() {
 	  // Finally, when all files have been read, close the stream
-	  concatenater.end();  
+	  concatenater.end();
 	});
 }
 
@@ -36,6 +36,8 @@ app.use((req,res,next)=>{
 app.get('/api',(req,res)=>{
 	if(req.query.ip){
 		ip2sound(req.IP)
+		let btf_ip=req.IP.replace(/\./g,"-");
+		res.sendFile(`./static/generated/${btf_ip}.mp3`)
 	}else{
 		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
 	}
