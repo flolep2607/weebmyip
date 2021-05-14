@@ -27,8 +27,8 @@ app.use((req,res,next)=>{
 app.get('/',(req,res)=>{
 	res.send(`>${req.IP}`)
 })
-app.get('api',(req,res)=>{
-	if(req.params.ip){
+app.get('/api',(req,res)=>{
+	if(req.query.ip){
 		return ip2sound(req.IP,res)
 	}
 })
