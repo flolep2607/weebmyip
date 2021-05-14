@@ -9,24 +9,30 @@ const fs = require("fs");
 const audioconcat = require('audioconcat')
 
 
-const ip2sound=(ip)=>{
+const ip2sound=(ip,res)=>{
 	const btf_ip=ip.replace(/\./g,"-")
-	var concatenater = concatstream();
+//	var concatenater = concatstream();
 	//concatenater.pipe(res)
 	console.log(`./static/generated/${btf_ip}.mp3`)
-	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
+//	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
 	//const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
 	console.log(["audio/phrases/baka.mp3"]);
-	async.eachSeries(["audio/phrases/baka.mp3"], (file, cb) => {
-	  // ... and pipe them into the concatenater
-	  fs
-	    .createReadStream(file)
-	    .on('end', cb)
-	    .pipe(concatenater, { end: false });
-	}, function() {
-	  // Finally, when all files have been read, close the stream
-	  concatenater.end();
-	});
+	audioconcat(["audio/phrases/baka.mp3"])
+		.concat(`./static/generated/${btf_ip}.mp3`)
+		.on('end', function (output) {
+			const btf_ip=req.IP.replace(/\./g,"-");
+			res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
+		})
+//			const btf_ip=req.IP.replace(/\./g,"-");
+//	  // ... and pipe them into the concatenater
+//	  fs
+//	    .createReadStream(file)
+//	    .on('end', cb)
+//	    .pipe(concatenater, { end: false });
+//	}, function() {
+//	  // Finally, when all files have been read, close the stream
+//	  concatenater.end();
+//	});
 }
 
 app.use((req,res,next)=>{
@@ -37,9 +43,6 @@ app.use((req,res,next)=>{
 app.get('/api',(req,res)=>{
 	if(req.query.ip){
 		ip2sound(req.IP)
-		const btf_ip=req.IP.replace(/\./g,"-");
-		console.log(__dirname+`/static/generated/${btf_ip}.mp3`);
-		res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
 	}else{
 		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
 	}
