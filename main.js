@@ -3,14 +3,11 @@ const app = express()
 const async = require('async');
 const concatstream = require('mp3-concat');
 const fs = require("fs");
-
+const _ = require('underscore');
 
 
 const ip2sound=(ip,res)=>{
-
-	res.writeHead(200, {
-	    'Content-Type': 'audio/mpeg'
-	  });
+	res.set(_.extend(_.pick(audioFile.headers, 'accept-ranges', 'content-type', 'content-length'), { 'Access-Control-Allow-Origin': '*' }));
 	concatenater = concatstream();
 	concatenater.pipe(res)
 	concatenater.on('error', (Error,String)=>console.log(Error,String))
