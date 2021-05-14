@@ -24,11 +24,12 @@ function insertion(my_array){
 const ip2sound=(ip,res)=>{
 	const btf_ip=ip.replace(/\./g,"-")
 	const FILE_path=`./static/generated/${btf_ip}.mp3`;
-	console.log(typeof fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime.getTime(),Date.now(),Date.now()-fs.statSync(FILE_path).mtime.getTime())
+//	console.log(typeof fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime,fs.statSync(FILE_path).mtime.getTime(),Date.now(),Date.now()-fs.statSync(FILE_path).mtime.getTime())
 //	var concatenater = concatstream();
 	//concatenater.pipe(res)
 
-	if(fs.existsSync(FILE_path)){fs.unlinkSync(FILE_path)}
+	if(!fs.existsSync(FILE_path)){
+//{fs.unlinkSync(FILE_path)}
 	console.log(`./static/generated/${btf_ip}.mp3`)
 //	concatenater.pipe(fs.createWriteStream(`./static/generated/${btf_ip}.mp3`));
 	var FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
@@ -49,6 +50,9 @@ const ip2sound=(ip,res)=>{
 //	  // Finally, when all files have been read, close the stream
 //	  concatenater.end();
 //	});
+}else{
+	res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
+}
 }
 app.use(express.static('static'));
 
