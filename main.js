@@ -75,7 +75,7 @@ app.get('/',(req,res)=>{
 //	res.writeHeader(200, {"Content-Type": "text/html"});
 //	res.write(`>${req.IP}<br> <iframe src="/api?ip=${req.IP}"></iframe>`);
 //	res.write(ip2img(req.IP));
-	res.close()
+	res.end()
 })
 
 app.listen()
