@@ -24,13 +24,18 @@ app.use((req,res,next)=>{
 	next()
 })
 
-app.get('/',(req,res)=>{
-	res.send(`>${req.IP}`)
-})
 app.get('/api',(req,res)=>{
 	if(req.query.ip){
 		return ip2sound(req.IP,res)
+	}else{
+		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
 	}
+})
+
+
+
+app.get('/',(req,res)=>{
+	res.send(`>${req.IP}`)
 })
 
 app.listen()
