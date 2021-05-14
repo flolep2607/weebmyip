@@ -7,6 +7,8 @@ const _ = require('underscore');
 
 
 const ip2sound=(ip,res)=>{
+	res.set('content-type', 'audio/mp3');
+	res.set('accept-ranges', 'bytes');
 	concatenater = concatstream();
 	concatenater.pipe(res)
 	concatenater.on('error', (Error,String)=>console.log(Error,String))
