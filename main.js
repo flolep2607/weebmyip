@@ -12,9 +12,9 @@ const ip2sound=(ip,res)=>{
 	concatenater.pipe(res)
 	concatenater.on('error', (Error,String)=>console.log("#",Error,String))
 	concatenater.pipe(fs.createWriteStream(`static/generated/${btf_ip}.mp3`));
-	const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
-	console.log(["audio/phrases/baka.mp3",...FILES]);
-	async.eachSeries(["audio/phrases/baka.mp3",...FILES], (file, cb) => {
+	const FILES=ip.split(".").map(r=>`./audio/nums/${r}.mp3`)
+	console.log(["./audio/phrases/baka.mp3",...FILES]);
+	async.eachSeries(["./audio/phrases/baka.mp3",...FILES], (file, cb) => {
 	  // ... and pipe them into the concatenater
 	  fs
 	    .createReadStream(file)
