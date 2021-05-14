@@ -20,7 +20,6 @@ const ip2sound=(ip)=>{
 	  fs
 	    .createReadStream(file)
 	    .on('end', cb)
-	    .on('error',r=>console.log(r))
 	    .pipe(concatenater, { end: false });
 	}
 , () => {
