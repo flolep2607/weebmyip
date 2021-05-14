@@ -60,10 +60,13 @@ app.use((req,res,next)=>{
 	req.IP=req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	next()
 })
+app.get('/myip.mp3',(req,res)=>{
+       ip2sound(req.IP,res)
+})
 
 app.get('/api',(req,res)=>{
 	if(req.query.ip){
-		ip2sound(req.IP,res)
+		ip2sound(req.query.ip,res)
 	}else{
 		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
 	}
