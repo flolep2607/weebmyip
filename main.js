@@ -20,7 +20,6 @@ const ip2sound=(ip,res)=>{
 	audioconcat(["audio/phrases/baka.mp3"])
 		.concat(`./static/generated/${btf_ip}.mp3`)
 		.on('end', function (output) {
-			const btf_ip=req.IP.replace(/\./g,"-");
 			res.sendFile(__dirname+`/static/generated/${btf_ip}.mp3`)
 		})
 //			const btf_ip=req.IP.replace(/\./g,"-");
@@ -42,7 +41,7 @@ app.use((req,res,next)=>{
 
 app.get('/api',(req,res)=>{
 	if(req.query.ip){
-		ip2sound(req.IP)
+		ip2sound(req.IP,res)
 	}else{
 		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
 	}
