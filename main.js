@@ -7,12 +7,13 @@ const _ = require('underscore');
 
 
 const ip2sound=(ip,res)=>{
+	btf_ip=ip.replaceAll(".","-")
 	res.set('content-type', 'audio/mp3');
 	res.set('accept-ranges', 'bytes');
 	concatenater = concatstream();
 	concatenater.pipe(res)
-	concatenater.on('error', (Error,String)=>console.log(Error,String))
-	//concatenater.pipe(fs.createWriteStream('concat.mp3'));
+	concatenater.on('error', (Error,String)=>console.log("#",Error,String))
+	concatenater.pipe(fs.createWriteStream(`static/generated/${}`));
 	const FILES=ip.split(".").map(r=>`audio/nums/${r}.mp3`)
 	console.log(["audio/phrases/baka.mp3",...FILES]);
 	async.eachSeries(["audio/phrases/baka.mp3",...FILES], (file, cb) => {
