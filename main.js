@@ -37,7 +37,7 @@ app.get('/api',(req,res)=>{
 	if(req.query.ip){
 		ip2sound(req.IP)
 		const btf_ip=req.IP.replace(/\./g,"-");
-		res.sendFile(`./static/generated/${btf_ip}.mp3`)
+		res.sendFile(__dirname+`./static/generated/${btf_ip}.mp3`)
 	}else{
 		res.send(`YO ${req.IP} ${JSON.stringify(req.query)}`)
 	}
