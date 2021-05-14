@@ -21,7 +21,7 @@ if(fs.existsSync(file)){
 	  fs
 	    .createReadStream(file)
 	    .on('end', cb)
-	    .on('error',r=>console.log)
+	    .on('error',r=>console.log(r))
 	    .pipe(concatenater, { end: false });
 	}
 }, () => {
