@@ -1,0 +1,43 @@
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="WeebMyIP">
+    <!-- Change og:image url to your Website-->
+    <meta property="og:description" content="IP Lookup With the help of an Anime Girl!">
+	<link rel="stylesheet" type="text/css" href="/static/css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+	<script src="/static/js/audio.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+	<title>WeebMyIP - Home</title>
+  <body>
+    <header>
+      <nav>
+        <span class="nav-toggle" id="js-nav-toggle">
+          <img src="/static/img/burger.png" alt="burger menu">
+        </span>
+        <ul id="menu">
+          <a href="/basic"><li class="active">Basic</li></a>
+          <a href="/advanced"><li>Advanced</li></a>
+          <a href="/api"><li>API</li></a>
+          <a href="/about"><li>About</li></a>
+        </ul>
+      </nav>
+    </header>
+    <div class="main-front">
+        <div class="logo">
+            <img src="/static/img/weebmyip.png" alt="weebmyip logo">
+        </div>
+        <div class="main-input">
+		  <audio id="audio" src="/api?=<%= IP %>"></audio>
+	</div>
+        <div class="play-ip">
+		<%= IMAGES %>
+        </div>
+    </div>
+<script defer>
+let mainNav = document.getElementById('menu');
+let navBarToggle = document.getElementById('js-nav-toggle');
+navBarToggle.addEventListener('click', function () {
+        mainNav.classList.toggle('activate');
+});
+</script>
+</body></html>
