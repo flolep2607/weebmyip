@@ -21,10 +21,9 @@ const ip2sound=(ip)=>{
 	    .createReadStream(file)
 	    .on('end', cb)
 	    .pipe(concatenater, { end: false });
-	}
-, () => {
+	}, function() {
 	  // Finally, when all files have been read, close the stream
-	  concatenater.end();
+	  concatenater.end();  
 	});
 }
 
