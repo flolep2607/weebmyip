@@ -59,7 +59,7 @@ const ip2img=(ip)=>{
 	return [...ip].map(r=>{
 		if(r!="."){return `<img src="/static/img/numbers/${r}_${randomint()}.png">`}
 		else{return "<br>"}
-	});
+	}).join("");
 }
 
 app.use(express.static('static'));
