@@ -116,10 +116,11 @@ window.onload=function(){
 
     }
     const r3 = [...document.querySelectorAll("#r3")];
+	const myRainbowSpan2=[]    
     r3.map(RAINBOW=>{
-	const myRainbowSpan2 = new RainbowSpan(RAINBOW, 0, 360, 255, 50, 348);
-	myRainbowSpan2.timer = window.setInterval("myRainbowSpan2.moveRainbow()", myRainbowSpan2.speed);
+	myRainbowSpan2.push(new RainbowSpan(RAINBOW, 0, 360, 255, 50, 348));
+	myRainbowSpan2[myRainbowSpan2.length-1].timer = window.setInterval(`myRainbowSpan2[${myRainbowSpan2.length-1}].moveRainbow()`, myRainbowSpan2[myRainbowSpan2.length-1].speed);
 	var colour = "#FF2535";
-});
+    })
 </script>
 </body></html>
